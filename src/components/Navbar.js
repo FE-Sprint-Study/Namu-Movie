@@ -1,5 +1,5 @@
 import '../styles/color.css';
-import '../styles/font.cs';
+import '../styles/font.css';
 
 export default function Navbar() {
   return (
