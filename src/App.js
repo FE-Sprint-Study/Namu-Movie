@@ -2,13 +2,13 @@ import './App.css';
 import React from 'react';
 
 import Navbar from './components/Navbar';
-import MovieCard from './components/MovieCard';
+import Main from './pages/Main';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App flex">
       <Navbar />
-      <MovieCard />
+      <Main />
     </div>
   );
 }
