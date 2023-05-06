@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 const API_KEY = 'b15312a073368028871202b6543ee610';
 // 해야할 것: 추천 영화가 하나씩 밀려서 나오는 현상
