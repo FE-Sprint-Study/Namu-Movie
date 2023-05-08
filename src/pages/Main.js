@@ -18,7 +18,7 @@ export default function Main() {
     <div className="flex">
       {movieData &&
         movieData.results.map(data => {
-          return <MovieCard movieData={data} />;
+          return <MovieCard movieData={data} key={movieData.id} />;
         })}
     </div>
   );
