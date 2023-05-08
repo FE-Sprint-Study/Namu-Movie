@@ -1,5 +1,5 @@
-import React from 'react';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+
 const API_KEY = 'b15312a073368028871202b6543ee610';
 // 해야할 것: 추천 영화가 하나씩 밀려서 나오는 현상
 export default function Search() {
@@ -24,11 +24,10 @@ export default function Search() {
       setSearchMovies([...res.results]);
       setGenreIds([...res.results][0].genre_ids);
     });
-    return;
   };
 
-  const fetchSimilarMovie = async genreIds => {
-    const genreIdsStr = genreIds.join(',');
+  const fetchSimilarMovie = async id => {
+    const genreIdsStr = id.join(',');
     const url = searchMovies.length
       ? `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=ko-KR&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreIdsStr}&with_watch_monetization_types=free`
       : '';
@@ -37,7 +36,6 @@ export default function Search() {
       console.log('similar: ', res.results);
       setSimilarMovies([...res.results]);
     });
-    return;
   };
 
   useEffect(() => {
@@ -56,7 +54,7 @@ export default function Search() {
 
       {/* 검색한 결과가 없다면 검색한 결과가 없다고 알려주고 div를 아예 안보여주기 */}
       <div className="search--result">
-        <label htmlFor="">{searchWord}로 검색한 결과입니다.</label>
+        <div>{searchWord}로 검색한 결과입니다.</div>
         <div className="search--result--movie">
           {searchMovies.map(movie => {
             return <div key={movie.id}>{movie.title}</div>;
@@ -66,7 +64,7 @@ export default function Search() {
       <br />
       <br />
       <div className="search--recommend">
-        <label htmlFor="">이런 영화는 어떠신가요?</label>
+        <div>이런 영화는 어떠신가요?</div>
         <div className="search--recommend--movie">
           {similarMovies.map(movie => {
             return <div key={movie.id}>{movie.title}</div>;
