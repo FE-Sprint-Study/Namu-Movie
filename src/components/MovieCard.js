@@ -6,12 +6,12 @@ export default function MovieCard({ movieData }) {
   const [isHover, setIsHover] = useState(false);
 
   const imgPath = movieData.poster_path;
-  const overView = movieData.overview;
+  const overView = movieData.overview.slice(0, 40);
   const movieTitle = movieData.title;
   const date = movieData.release_date;
   const vote = movieData.vote_average;
-
   const sampleImg = `http://image.tmdb.org/t/p/w500/${imgPath}`;
+
   return (
     <Card>
       <div
@@ -31,11 +31,13 @@ export default function MovieCard({ movieData }) {
           alt="샘플포스터"
         />
         <div
-          className={`absolute w-full h-full bottom-0 top-0 left-0 right-0 text-center  ${
+          className={`absolute w-full h-full bottom-0 top-0 left-0 right-0 text-center text-ellipsis overflow-hidden ${
             isHover ? 'flex' : 'hidden'
           } justify-center items-center bg-black/60`}
         >
-          <div className="text-white p-4">{overView}</div>
+          <div className="text-white p-4">
+            {overView !== '' ? `${overView}...` : '줄거리 정보없음'}
+          </div>
         </div>
       </div>
       <div className="flex flex-col justify-between h-1/6 py-1 px-2 text-sm">
@@ -57,4 +59,5 @@ min-height: 150px;
 shadow-2xl
 overflow-hidden
 bg-black
+m-8
 `;
