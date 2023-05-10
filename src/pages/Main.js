@@ -30,4 +30,5 @@ const MainContainer = tw.div`
   ml-auto
   flex
   flex-wrap
+  h-screen
 `;
