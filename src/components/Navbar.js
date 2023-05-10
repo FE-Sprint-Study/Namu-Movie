@@ -12,8 +12,14 @@ import '../styles/color.css';
 import '../styles/font.css';
 
 export default function Navbar({ curPage }) {
+  // w-[calc(100%-1rem)]
+  const RelativeContriner = tw.div`
+    relative
+    w-56
+  `;
+
   const Container = tw.div`
-    w-1/6
+    w-56
     h-screen
     pr-1
     bg-black
@@ -100,43 +106,45 @@ export default function Navbar({ curPage }) {
   ];
 
   return (
-    <Container>
-      <Border />
-      <Profile>
-        <ProfileBorder>
-          <AiOutlineUser className="icon" size="50" color="white" />
-        </ProfileBorder>
-      </Profile>
-      <Menu>
-        {profileList.map(x => {
-          return (
-            <MenuElement>
-              {x.text === curPage ? (
-                <>
-                  <x.icon className="icon" size="50" color="#7aa7ff" />
-                  <CurMenuText>{x.text}</CurMenuText>
-                </>
-              ) : (
-                <>
-                  <x.icon className="icon" size="50" color="white" />
-                  <MenuText>{x.text}</MenuText>
-                </>
-              )}
-            </MenuElement>
-          );
-        })}
-        <MenuBorderContiner>
-          <MenuBorder />
-        </MenuBorderContiner>
-        <Footer>
-          <a href="https://www.notion.so/6f91a2154dc847f3acb878c656a4e98c?pvs=4">
-            <SiNotion className="icon" size="50" color="white" />
-          </a>
-          <a href="https://github.com/FE-Sprint-Study/Namu-Movie">
-            <AiOutlineGithub className="icon" size="50" color="white" />
-          </a>
-        </Footer>
-      </Menu>
-    </Container>
+    <RelativeContriner>
+      <Container>
+        <Border />
+        <Profile>
+          <ProfileBorder>
+            <AiOutlineUser className="icon" size="50" color="white" />
+          </ProfileBorder>
+        </Profile>
+        <Menu>
+          {profileList.map(x => {
+            return (
+              <MenuElement>
+                {x.text === curPage ? (
+                  <>
+                    <x.icon className="icon" size="50" color="#7aa7ff" />
+                    <CurMenuText>{x.text}</CurMenuText>
+                  </>
+                ) : (
+                  <>
+                    <x.icon className="icon" size="50" color="white" />
+                    <MenuText>{x.text}</MenuText>
+                  </>
+                )}
+              </MenuElement>
+            );
+          })}
+          <MenuBorderContiner>
+            <MenuBorder />
+          </MenuBorderContiner>
+          <Footer>
+            <a href="https://www.notion.so/6f91a2154dc847f3acb878c656a4e98c?pvs=4">
+              <SiNotion className="icon" size="50" color="white" />
+            </a>
+            <a href="https://github.com/FE-Sprint-Study/Namu-Movie">
+              <AiOutlineGithub className="icon" size="50" color="white" />
+            </a>
+          </Footer>
+        </Menu>
+      </Container>
+    </RelativeContriner>
   );
 }

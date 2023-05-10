@@ -5,6 +5,7 @@ import tw from 'tailwind-styled-components';
 import Navbar from './components/Navbar';
 import Main from './pages/Main';
 import Search from './pages/Search';
+import Genre from './pages/Genre';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/genre" element={<Main />} />
+          <Route path="/genre" element={<Genre />} />
         </Routes>
       </AppWrapper>
     </div>

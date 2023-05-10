@@ -26,7 +26,7 @@ export default function Main() {
 }
 
 const MainContainer = tw.div`
-  w-5/6
+  w-[calc(100%-14rem)]
   ml-auto
   flex
   flex-wrap
