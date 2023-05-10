@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <AppWrapper>
-        <Navbar curPage="Home" />
+        <Navbar />
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/search" element={<Search />} />

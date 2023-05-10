@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import tw from 'tailwind-styled-components';
 import {
   AiOutlineUser,
@@ -11,8 +12,7 @@ import { SiNotion } from 'react-icons/si';
 import '../styles/color.css';
 import '../styles/font.css';
 
-export default function Navbar({ curPage }) {
-  // w-[calc(100%-1rem)]
+export default function Navbar() {
   const RelativeContriner = tw.div`
     relative
     w-56
@@ -100,10 +100,18 @@ export default function Navbar({ curPage }) {
   `;
 
   const profileList = [
-    { icon: AiOutlineHome, text: 'Home' },
-    { icon: AiOutlineSearch, text: 'Search' },
-    { icon: AiOutlineAppstore, text: 'Category' },
+    { icon: AiOutlineHome, text: 'Home', path: '/' },
+    { icon: AiOutlineSearch, text: 'Search', path: '/search' },
+    { icon: AiOutlineAppstore, text: 'Category', path: '/genre' },
   ];
+
+  const sampleLocation = useLocation();
+  let curPage = 'Home';
+  if (sampleLocation.pathname === '/search') {
+    curPage = 'Search';
+  } else if (sampleLocation.pathname === '/genre') {
+    curPage = 'Category';
+  }
 
   return (
     <RelativeContriner>
@@ -117,19 +125,21 @@ export default function Navbar({ curPage }) {
         <Menu>
           {profileList.map(x => {
             return (
-              <MenuElement>
-                {x.text === curPage ? (
-                  <>
-                    <x.icon className="icon" size="50" color="#7aa7ff" />
-                    <CurMenuText>{x.text}</CurMenuText>
-                  </>
-                ) : (
-                  <>
-                    <x.icon className="icon" size="50" color="white" />
-                    <MenuText>{x.text}</MenuText>
-                  </>
-                )}
-              </MenuElement>
+              <Link to={x.path}>
+                <MenuElement>
+                  {x.text === curPage ? (
+                    <>
+                      <x.icon className="icon" size="50" color="#7aa7ff" />
+                      <CurMenuText>{x.text}</CurMenuText>
+                    </>
+                  ) : (
+                    <>
+                      <x.icon className="icon" size="50" color="white" />
+                      <MenuText>{x.text}</MenuText>
+                    </>
+                  )}
+                </MenuElement>
+              </Link>
             );
           })}
           <MenuBorderContiner>
