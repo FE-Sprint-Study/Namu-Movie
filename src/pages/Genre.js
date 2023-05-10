@@ -3,15 +3,15 @@ import tw from 'tailwind-styled-components';
 import movieApi from '../apis/movieApi';
 import '../styles/color.css';
 import '../styles/font.css';
+import MovieCard from '../components/MovieCard';
 
 export default function Genre() {
-  const Container = tw.div`
-    w-56
-    h-screen
-    pr-1
-    bg-black
-    fixed
-  `;
+  const MainContainer = tw.div`
+  w-[calc(100%-14rem)]
+  ml-auto
+  flex
+  flex-wrap
+`;
   const [movieData, setMovieData] = useState(null);
   useEffect(() => {
     movieApi
@@ -21,5 +21,12 @@ export default function Genre() {
         setMovieData(json);
       });
   }, []);
-  return <Container />;
+  return (
+    <MainContainer>
+      {movieData &&
+        movieData.results.map(data => {
+          return <MovieCard movieData={data} key={movieData.id} />;
+        })}
+    </MainContainer>
+  );
 }
