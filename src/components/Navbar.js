@@ -13,11 +13,13 @@ import '../styles/font.css';
 
 export default function Navbar({ curPage }) {
   const Container = tw.div`
-    w-56
+    w-1/6
     h-screen
     pr-1
     bg-black
     fixed
+    top-0
+    left-0
   `;
   // Container의 border 역할을 해줄 Border
   const Border = tw.div`
