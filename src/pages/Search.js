@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
+import movieApi from '../apis/movieApi';
 
 const API_KEY = 'b15312a073368028871202b6543ee610';
-// 해야할 것: 추천 영화가 하나씩 밀려서 나오는 현상
+
 export default function Search() {
   const [searchWord, setSearchWord] = useState('');
   const [searchMovies, setSearchMovies] = useState([]);
-  const [genreIds, setGenreIds] = useState([]);
   const [similarMovies, setSimilarMovies] = useState([]);
   const searchInputRef = useRef('');
 
@@ -17,30 +17,24 @@ export default function Search() {
   };
 
   const fetchSearchMovieData = async word => {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${word}&include_adult=true&language=ko-KR`,
-    );
-    response.json().then(res => {
-      setSearchMovies([...res.results]);
-      setGenreIds([...res.results][0].genre_ids);
-    });
+    const searchData = await movieApi.getSearch(word);
+    setSearchMovies([...searchData]);
+    return [...searchData][0].genre_ids;
   };
 
   const fetchSimilarMovie = async id => {
     const genreIdsStr = id.join(',');
-    const url = searchMovies.length
-      ? `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=ko-KR&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreIdsStr}&with_watch_monetization_types=free`
-      : '';
-    const response = await fetch(url);
-    response.json().then(res => {
-      console.log('similar: ', res.results);
-      setSimilarMovies([...res.results]);
-    });
+    const response = await fetch(
+      `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=ko-KR&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreIdsStr}&with_watch_monetization_types=free`,
+    );
+    const res = await response.json();
+    setSimilarMovies([...res.results]);
   };
 
   useEffect(() => {
-    fetchSearchMovieData(searchWord);
-    fetchSimilarMovie([...genreIds]);
+    fetchSearchMovieData(searchWord).then(resId => {
+      fetchSimilarMovie(resId);
+    });
   }, [searchWord]);
 
   return (
