@@ -38,4 +38,19 @@ export default {
     );
     return latest;
   },
+
+  async getSearch(word) {
+    const response = await fetch(
+      `${API_BASE}/search/movie?api_key=${API_KEY}&query=${word}&include_adult=true&language=ko-KR`,
+    );
+    const res = await response.json();
+    return res;
+  },
+
+  getGenreMovie(genre) {
+    const response = fetch(
+      `${API_BASE}/discover/movie?api_key=${API_KEY}&with_genres=${genre}&language=ko`,
+    );
+    return res;
+  },
 };
