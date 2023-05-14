@@ -44,7 +44,7 @@ export default {
       `${API_BASE}/search/movie?api_key=${API_KEY}&query=${word}&include_adult=true&language=ko-KR`,
     );
     const res = await response.json();
-    return res;
+    return res.results;
   },
 
   getGenreMovie(genre) {
