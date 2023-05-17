@@ -23,12 +23,8 @@ export default function Search() {
   };
 
   const fetchSimilarMovie = async id => {
-    const genreIdsStr = id.join(',');
-    const response = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=ko-KR&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreIdsStr}&with_watch_monetization_types=free`,
-    );
-    const res = await response.json();
-    setSimilarMovies([...res.results]);
+    const similarData = await movieApi.getSimilar(id);
+    setSimilarMovies([...similarData]);
   };
 
   useEffect(() => {
