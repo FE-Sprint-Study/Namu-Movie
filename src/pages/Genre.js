@@ -25,8 +25,13 @@ export default function Genre() {
   const [tagList, setTag] = useState([]);
 
   useEffect(() => {
+    const genreParameter = tagList.map((item, idx) => {
+      if (idx === 0) return item.id;
+      return `, ${item.id}`;
+    });
+
     movieApi
-      .getPopular()
+      .getGenreMovie(genreParameter)
       .then(res => res.json())
       .then(json => {
         setMovieData(json);
@@ -36,9 +41,12 @@ export default function Genre() {
     <MainContainer>
       <Tag tagList={tagList} setTag={setTag} />
       <SelectedTag>
-        {tagList.map(x => {
-          return x.name;
-        })}
+        {tagList.length === 0
+          ? '전체보기'
+          : tagList.map((item, idx) => {
+              if (idx === 0) return item.name;
+              return `, ${item.name}`;
+            })}
       </SelectedTag>
       {movieData &&
         movieData.results.map(data => {

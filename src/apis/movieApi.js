@@ -48,7 +48,7 @@ export default {
   },
 
   getGenreMovie(genre) {
-    const response = fetch(
+    const res = fetch(
       `${API_BASE}/discover/movie?api_key=${API_KEY}&with_genres=${genre}&language=ko`,
     );
     return res;
