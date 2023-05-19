@@ -1,7 +1,7 @@
 import tw from 'tailwind-styled-components';
 
 const Container = tw.div`
-w-[100%]
+w-[100%-4rem]
 flex
 flex-wrap
 bg-black
@@ -22,14 +22,9 @@ my-1.5
 text-xl
 border-2
 rounded-3xl
-${tag =>
-  tag.isSelected
-    ? tw`bg-mainColor text-white`
-    : tw`bg-black text-white hover:bg-gray-800`}
 `;
 const SelectedTag = tw(TagContainer)`
 bg-mainColor
-flex
 items-center
 `;
 export { Container, TagContainer, SelectedTag };
