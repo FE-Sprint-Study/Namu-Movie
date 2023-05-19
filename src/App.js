@@ -25,6 +25,7 @@ function App() {
 const AppWrapper = tw.div`
   flex
   relative
+  bg-black
 `;
 
 export default App;
