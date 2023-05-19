@@ -19,6 +19,7 @@ export default function Genre() {
     mx-8
     mt-12
     font-extrabold
+    text-white
   `;
 
   const [movieData, setMovieData] = useState(null);

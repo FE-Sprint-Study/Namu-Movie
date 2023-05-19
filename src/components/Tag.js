@@ -1,40 +1,10 @@
 import React from 'react';
-import tw from 'tailwind-styled-components';
 import '../styles/color.css';
 import '../styles/font.css';
-import { AiOutlineClose } from 'react-icons/ai';
+import { Container, TagContainer, SelectedTag } from '../styles/tagStyle';
 
 export default function Tag(props) {
   const { tagList, setTag } = props;
-  const Container = tw.div`
-    w-[100%]
-    flex
-    flex-wrap
-    bg-[#D9D9D9]
-    mx-8
-    mt-8
-    px-7
-    py-5
-  `;
-  const TagContainer = tw.button`
-    bg-black
-    text-white
-    px-5
-    py-3
-    mx-2
-    my-1.5
-    text-xl
-    rounded-3xl
-    ${tag =>
-      tag.isSelected
-        ? tw`bg-mainColor text-white`
-        : tw`bg-black text-white hover:bg-gray-800`}
-  `;
-  const SelectedTag = tw(TagContainer)`
-    bg-mainColor
-    flex
-    items-center
-  `;
 
   const clickTag = x => {
     const tagIndex = tagList.findIndex(tag => tag.id === x.id);
@@ -52,7 +22,6 @@ export default function Tag(props) {
         return isSelected ? (
           <SelectedTag key={x.id} onClick={() => clickTag(x)}>
             <p>{x.name}</p>
-            <AiOutlineClose />
           </SelectedTag>
         ) : (
           <TagContainer key={x.id} onClick={() => clickTag(x)}>

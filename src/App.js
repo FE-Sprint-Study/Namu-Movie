@@ -26,6 +26,7 @@ const AppWrapper = tw.div`
   flex
   relative
   bg-black
+  min-h-screen
 `;
 
 export default App;
