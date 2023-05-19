@@ -1,7 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
-import movieApi from '../apis/movieApi';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { useInView } from 'react-intersection-observer';
 
-const API_KEY = 'b15312a073368028871202b6543ee610';
+import tw from 'tailwind-styled-components';
+import movieApi from '../apis/movieApi';
+import SearchBar from '../components/SearchBar';
+import SearchResult from '../components/SearchResult';
+import RecommendResult from '../components/RecommendResult';
 
 export default function Search() {
   const [searchWord, setSearchWord] = useState('');
@@ -9,9 +14,19 @@ export default function Search() {
   const [similarMovies, setSimilarMovies] = useState([]);
   const searchInputRef = useRef('');
 
+  const { ref, inView } = useInView({ threshold: 0.8 });
+
+  const [page, setPage] = useState(1);
+
+  const showSimilarItem = useMemo(() => {
+    return similarMovies;
+  }, [similarMovies]);
+
   const handleSearchSubmit = e => {
     e.preventDefault();
     setSearchWord(searchInputRef.current.value);
+    setSimilarMovies([]);
+    setPage(1);
     searchInputRef.current.value = '';
     searchInputRef.current.focus();
   };
@@ -22,45 +37,45 @@ export default function Search() {
     return [...searchData][0].genre_ids;
   };
 
-  const fetchSimilarMovie = async id => {
-    const similarData = await movieApi.getSimilar(id);
-    setSimilarMovies([...similarData]);
+  const fetchSimilarMovie = async (inputId, inputPage) => {
+    const similarData = await movieApi.getSimilar(inputId, inputPage);
+    setSimilarMovies(prevItem => [...prevItem, ...similarData]);
   };
 
   useEffect(() => {
     fetchSearchMovieData(searchWord).then(resId => {
-      fetchSimilarMovie(resId);
+      fetchSimilarMovie(resId, page);
     });
-  }, [searchWord]);
+  }, [searchWord, page]);
+
+  useEffect(() => {
+    if (inView && searchWord) setPage(prev => prev + 1);
+  }, [inView, searchWord]);
 
   return (
-    <>
-      <form action="" onSubmit={handleSearchSubmit}>
-        <span style={{ border: '2px solid black', padding: '6px' }}>
-          <input ref={searchInputRef} placeholder="Search" />
-          <button type="submit">🔍</button>
-        </span>
-      </form>
-
-      {/* 검색한 결과가 없다면 검색한 결과가 없다고 알려주고 div를 아예 안보여주기 */}
-      <div className="search--result">
-        <div>{searchWord}로 검색한 결과입니다.</div>
-        <div className="search--result--movie">
-          {searchMovies.map(movie => {
-            return <div key={movie.id}>{movie.title}</div>;
-          })}
-        </div>
-      </div>
-      <br />
-      <br />
-      <div className="search--recommend">
-        <div>이런 영화는 어떠신가요?</div>
-        <div className="search--recommend--movie">
-          {similarMovies.map(movie => {
-            return <div key={movie.id}>{movie.title}</div>;
-          })}
-        </div>
-      </div>
-    </>
+    <Container>
+      <SearchBar
+        handleSearchSubmit={handleSearchSubmit}
+        searchInputRef={searchInputRef}
+      />
+      <SearchResult searchWord={searchWord} searchMovies={searchMovies} />
+      <RecommendResult similarMovies={showSimilarItem.slice(0, page * 20)} />
+      <ObserverContainer ref={ref} />
+    </Container>
   );
 }
+
+const Container = tw.main`
+  w-[calc(100%-14rem)]
+  ml-auto
+  flex
+  flex-wrap
+  flex-col
+  items-center
+  gap-y-12
+`;
+
+const ObserverContainer = tw.section`
+  w-full
+  h-20
+`;
