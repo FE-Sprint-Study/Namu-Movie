@@ -7,6 +7,10 @@ module.exports = {
         mainColor: '#7aa7ff',
         black: '#141414',
       },
+      width: {
+        searchResultContainer: '77rem',
+        searchBarWidth: '30rem',
+      },
     },
   },
   plugins: [],
