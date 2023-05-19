@@ -10,16 +10,16 @@ export default function Genre() {
   const MainContainer = tw.div`
     w-[calc(100%-14rem)]
     ml-auto
-    flex
-    flex-wrap
+    flex flex-col
   `;
   const SelectedTag = tw.div`
-    text-3xl
+    text-3xl text-white
+    font-extrabold 
     w-full
-    mx-8
-    mt-12
-    font-extrabold
-    text-white
+    px-8 mt-12
+  `;
+  const CardContainer = tw.div`
+    flex flex-wrap
   `;
 
   const [movieData, setMovieData] = useState(null);
@@ -49,10 +49,12 @@ export default function Genre() {
               return `, ${item.name}`;
             })}
       </SelectedTag>
-      {movieData &&
-        movieData.results.map(data => {
-          return <MovieCard movieData={data} key={movieData.id} />;
-        })}
+      <CardContainer>
+        {movieData &&
+          movieData.results.map(data => {
+            return <MovieCard movieData={data} key={movieData.id} />;
+          })}
+      </CardContainer>
     </MainContainer>
   );
 }
