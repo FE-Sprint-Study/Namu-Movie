@@ -6,6 +6,10 @@ module.exports = {
       colors: {
         mainColor: '#7aa7ff',
       },
+      width: {
+        searchResultContainer: '77rem',
+        searchBarWidth: '30rem',
+      },
     },
   },
   plugins: [],
