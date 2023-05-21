@@ -21,7 +21,7 @@ export default function Swiper({ movieData }) {
   };
 
   useEffect(() => {
-    const interval = setInterval(handleNext, 10000); // 3초마다 이미지 변경
+    const interval = setInterval(handleNext, 3000); // 3초마다 이미지 변경
     console.log('mount');
     return () => {
       clearInterval(interval);
