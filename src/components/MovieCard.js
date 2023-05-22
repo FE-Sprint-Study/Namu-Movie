@@ -40,7 +40,11 @@ export default function MovieCard({ movieData }) {
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-between h-1/6 py-1 px-2 text-sm">
+      <div
+        className={`flex flex-col justify-between h-1/6 py-1 px-2 text-sm border-b-2 ${
+          isHover ? `border-mainColor` : ''
+        }`}
+      >
         <div className="text-white">{movieTitle}</div>
         <div className="text-xs flex flex-row justify-between">
           <div className="text-white">{date}</div>
@@ -60,7 +64,5 @@ min-w-60
 overflow-hidden
 bg-black
 m-8
-
-
 font-bold
 `;
