@@ -15,6 +15,9 @@ export default function MovieCard({ movieData }) {
   const vote = movieData.vote_average.toFixed(1);
   const posterImg = `http://image.tmdb.org/t/p/w500/${imgPath}`;
 
+  const notFoundImg =
+    'https://skydomepictures.com/wp-content/uploads/2018/08/movie-poster-coming-soon-2.png';
+
   return (
     <Card>
       <div
@@ -30,7 +33,7 @@ export default function MovieCard({ movieData }) {
       >
         <img
           className="absolute top-0 left-0 w-full h-full"
-          src={posterImg}
+          src={imgPath ? posterImg : notFoundImg}
           alt="포스터"
         />
         <div
