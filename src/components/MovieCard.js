@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import tw from 'tailwind-styled-components';
+
 import '../styles/color.css';
+
+import { AiFillStar } from 'react-icons/ai';
 
 export default function MovieCard({ movieData }) {
   const [isHover, setIsHover] = useState(false);
 
   const imgPath = movieData.poster_path;
-  const overView = movieData.overview.slice(0, 50);
+  const overView = movieData.overview.slice(0, 40);
   const movieTitle = movieData.title;
   const date = movieData.release_date;
-  const vote = movieData.vote_average;
+  const vote = movieData.vote_average.toFixed(1);
   const posterImg = `http://image.tmdb.org/t/p/w500/${imgPath}`;
 
   return (
@@ -48,7 +51,9 @@ export default function MovieCard({ movieData }) {
         <div className="text-white">{movieTitle}</div>
         <div className="text-xs flex flex-row justify-between">
           <div className="text-white">{date}</div>
-          <div className="text-red-600">⭐️ {vote}</div>
+          <div className="text-red-600 flex">
+            <AiFillStar className="text-base" /> {vote}
+          </div>
         </div>
       </div>
     </Card>
