@@ -17,36 +17,29 @@ export default function Main() {
   const scrollRef = useRef(null);
 
   useEffect(() => {
-    movieApi
-      .getPopular()
-      .then(res => res.json())
-      .then(json => {
-        setPopularData(json);
-      });
-    movieApi
-      .getTopRated()
-      .then(res => res.json())
-      .then(json => {
-        setTopRatedData(json);
-      });
-    movieApi
-      .getDayPopular()
-      .then(res => res.json())
-      .then(json => {
-        setDayPopularData(json);
-      });
-    movieApi
-      .getWeekPopular()
-      .then(res => res.json())
-      .then(json => {
-        setWeekPopularData(json);
-      });
-    movieApi
-      .getNowPlaying()
-      .then(res => res.json())
-      .then(json => {
-        setNowPlayingData(json);
-      });
+    const fetchData = async () => {
+      const popularResponse = await movieApi.getPopular();
+      const popularJson = await popularResponse.json();
+      setPopularData(popularJson);
+
+      const topRatedResponse = await movieApi.getTopRated();
+      const topRatedJson = await topRatedResponse.json();
+      setTopRatedData(topRatedJson);
+
+      const dayPopularResponse = await movieApi.getDayPopular();
+      const dayPopularJson = await dayPopularResponse.json();
+      setDayPopularData(dayPopularJson);
+
+      const weekPopularResponse = await movieApi.getWeekPopular();
+      const weekPopularJson = await weekPopularResponse.json();
+      setWeekPopularData(weekPopularJson);
+
+      const nowPlayingResponse = await movieApi.getNowPlaying();
+      const nowPlayingJson = await nowPlayingResponse.json();
+      setNowPlayingData(nowPlayingJson);
+    };
+
+    fetchData();
   }, []);
 
   const throttle = (func, ms) => {
@@ -97,12 +90,8 @@ export default function Main() {
           {popularData && <Swiper movieData={popularData} />}
         </div>
         <div className="flex flex-col text-white m-8 ml-20 mr-20">
-          <div className="text-5xl font-bold cursor-default">
-            인기 TOP10 영화
-          </div>
-          <div
-            role="scrollbar"
-            className="flex flex-row w-full overflow-x-scroll scrollbar-hide"
+          <SectionTitle>인기 TOP10 영화</SectionTitle>
+          <ScrollContainer
             ref={scrollRef}
             onMouseDown={onDragStart}
             onMouseMove={onThrottleDragMove}
@@ -115,53 +104,42 @@ export default function Main() {
             tabIndex={0}
           >
             {popularData &&
-              popularData.results.map((data, idx) => {
-                if (idx < 10) {
-                  return <MovieCard movieData={data} key={data.id} />;
-                }
-                return null;
-              })}
-          </div>
+              popularData.results
+                .slice(0, 10)
+                .map(data => <MovieCard movieData={data} key={data.id} />)}
+          </ScrollContainer>
 
-          <div className="text-5xl font-bold cursor-default">
-            일간 인기 영화
-          </div>
-          <div className="flex flex-row w-full overflow-x-scroll scrollbar-hide">
+          <SectionTitle>일간 인기 영화</SectionTitle>
+          <ScrollContainer>
             {dayPopularData &&
-              dayPopularData.results.map(data => {
-                return <MovieCard movieData={data} key={dayPopularData.id} />;
-              })}
-          </div>
+              dayPopularData.results.map(data => (
+                <MovieCard movieData={data} key={data.id} />
+              ))}
+          </ScrollContainer>
 
-          <div className="text-5xl font-bold cursor-default">
-            주간 인기 영화
-          </div>
-          <div className="flex flex-row w-full overflow-x-scroll scrollbar-hide">
+          <SectionTitle>주간 인기 영화</SectionTitle>
+          <ScrollContainer>
             {weekPopularData &&
-              weekPopularData.results.map(data => {
-                return <MovieCard movieData={data} key={weekPopularData.id} />;
-              })}
-          </div>
+              weekPopularData.results.map(data => (
+                <MovieCard movieData={data} key={data.id} />
+              ))}
+          </ScrollContainer>
 
-          <div className="text-5xl font-bold cursor-default">
-            역대 인기 영화
-          </div>
-          <div className="flex flex-row w-full overflow-x-scroll scrollbar-hide">
+          <SectionTitle>역대 인기 영화</SectionTitle>
+          <ScrollContainer>
             {topRatedData &&
-              topRatedData.results.map(data => {
-                return <MovieCard movieData={data} key={topRatedData.id} />;
-              })}
-          </div>
+              topRatedData.results.map(data => (
+                <MovieCard movieData={data} key={data.id} />
+              ))}
+          </ScrollContainer>
 
-          <div className="text-5xl font-bold cursor-default">
-            현재 상영중인 영화
-          </div>
-          <div className="flex flex-row w-full overflow-x-scroll scrollbar-hide">
+          <SectionTitle>현재 상영중인 영화</SectionTitle>
+          <ScrollContainer>
             {nowPlayingData &&
-              nowPlayingData.results.map(data => {
-                return <MovieCard movieData={data} key={nowPlayingData.id} />;
-              })}
-          </div>
+              nowPlayingData.results.map(data => (
+                <MovieCard movieData={data} key={data.id} />
+              ))}
+          </ScrollContainer>
         </div>
       </div>
     </MainContainer>
@@ -177,5 +155,19 @@ const MainContainer = tw.div`
   right-0
   overflow-scroll
   h-screen
+  scrollbar-hide
+`;
+
+const SectionTitle = tw.div`
+  text-5xl
+  font-bold
+  cursor-default
+`;
+
+const ScrollContainer = tw.div`
+  flex
+  flex-row
+  w-full
+  overflow-x-scroll
   scrollbar-hide
 `;
