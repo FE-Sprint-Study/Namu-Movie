@@ -41,7 +41,7 @@ export default function MovieCard({ movieData }) {
         </div>
       </div>
       <div
-        className={`flex flex-col justify-between h-1/6 py-1 px-2 text-sm border-b-2 ${
+        className={`flex flex-col justify-between h-1/6 py-1 px-2 text-sm border-b-2 cursor-default ${
           isHover ? `border-mainColor` : ''
         }`}
       >
