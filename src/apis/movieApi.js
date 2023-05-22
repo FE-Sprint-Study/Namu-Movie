@@ -18,6 +18,13 @@ export default {
     return topRated;
   },
 
+  getDayPopular() {
+    const dayPopular = fetch(
+      `${API_BASE}/trending/movie/day?api_key=${API_KEY}&language=ko`,
+    );
+    return dayPopular;
+  },
+
   getWeekPopular() {
     const weekPopular = fetch(
       `${API_BASE}/trending/movie/week?api_key=${API_KEY}&language=ko`,
