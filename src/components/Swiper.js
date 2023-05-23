@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from 'react-icons/ai';
 
 export default function Swiper({ movieData }) {
@@ -8,17 +8,17 @@ export default function Swiper({ movieData }) {
     return `http://image.tmdb.org/t/p/original/${data.backdrop_path}`;
   });
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setCurrentIndex(prevIndex =>
       prevIndex === 0 ? movieBackDropArr.length - 1 : prevIndex - 1,
     );
-  };
+  }, [movieBackDropArr.length]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setCurrentIndex(prevIndex =>
       prevIndex === movieBackDropArr.length - 1 ? 0 : prevIndex + 1,
     );
-  };
+  }, [movieBackDropArr.length]);
 
   useEffect(() => {
     const interval = setInterval(handleNext, 3000); // 3초마다 이미지 변경
@@ -50,7 +50,7 @@ export default function Swiper({ movieData }) {
         </button>
         <img
           src={movieBackDropArr[currentIndex]}
-          alt="Slideshow Image"
+          alt="Slideshow"
           className="w-screen h-50rem  min-w-full min-h-test object-cover"
         />
       </div>
