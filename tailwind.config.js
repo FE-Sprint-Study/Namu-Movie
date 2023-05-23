@@ -23,6 +23,16 @@ module.exports = {
       minWidth: {
         60: '15rem',
       },
+      animation: {
+        blink: 'blink 5s infinite',
+      },
+      keyframes: {
+        blink: {
+          '0%': { opacity: '1' },
+          '50%': { opacity: '0.1' },
+          '100%': { opacity: '1' },
+        },
+      },
     },
   },
   plugins: [require('tailwind-scrollbar-hide')],
