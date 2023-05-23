@@ -153,8 +153,7 @@ const MainContainer = tw.div`
   flex-col
   relative
   right-0
-  overflow-scroll
-  h-screen
+  h-full
   scrollbar-hide
 `;
 
