@@ -1,0 +1,30 @@
+import React from 'react';
+import { AiOutlineSearch } from 'react-icons/ai';
+import tw from 'tailwind-styled-components';
+
+export default function Empty() {
+  const EmptyCardContainer = tw.div`
+    text-white 
+    px-8 my-8
+    w-full 
+    align-center
+  `;
+  const EmptyCard = tw.div`
+    text-3xl 
+    p-8 
+    flex flex-col 
+    items-center text-center 
+    animate-blink
+  `;
+  return (
+    <EmptyCardContainer>
+      <EmptyCard>
+        <AiOutlineSearch size="50" />
+        <p className="mt-6">
+          movie not found <br />
+          search again
+        </p>
+      </EmptyCard>
+    </EmptyCardContainer>
+  );
+}
