@@ -1,22 +1,27 @@
-import React from 'react';
+import { React, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import tw from 'tailwind-styled-components';
 import Navbar from './components/Navbar';
-import Main from './pages/Main';
-import Search from './pages/Search';
-import Genre from './pages/Genre';
+import MoveTop from './components/MoveTop';
+
+const Main = lazy(() => import('./pages/Main'));
+const Search = lazy(() => import('./pages/Search'));
+const Genre = lazy(() => import('./pages/Genre'));
 
 function App() {
   return (
     <div className="App">
       <AppWrapper>
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/genre" element={<Genre />} />
-        </Routes>
+        <Suspense>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/genre" element={<Genre />} />
+          </Routes>
+        </Suspense>
+        <MoveTop />
       </AppWrapper>
     </div>
   );
