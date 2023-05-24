@@ -16,14 +16,18 @@ export default function Empty() {
     items-center text-center 
     animate-blink
   `;
+  const EmptyP = tw.div`
+    mt-6
+    cursor-default
+  `;
   return (
     <EmptyCardContainer>
       <EmptyCard>
         <AiOutlineSearch size="50" />
-        <p className="mt-6">
+        <EmptyP>
           movie not found <br />
           search again
-        </p>
+        </EmptyP>
       </EmptyCard>
     </EmptyCardContainer>
   );
