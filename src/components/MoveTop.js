@@ -32,9 +32,10 @@ export default function MoveTop() {
   return (
     <button
       type="button"
+      disabled={position === 0}
       className={`fixed bottom-10 right-10 text-6xl ${
         onClickBtn ? 'text-mainColor' : 'text-white'
-      }`}
+      } ${position === 0 ? 'opacity-20' : ''}`}
       onClick={moveTopHandler}
     >
       <AiOutlineUpCircle />
