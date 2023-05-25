@@ -1,12 +1,18 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react';
 import tw from 'tailwind-styled-components';
 
 import '../styles/color.css';
 
 import { AiFillStar } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
+import { modalActions } from '../store/modalSlice';
 
 export default function MovieCard({ movieData }) {
   const [isHover, setIsHover] = useState(false);
+  const dispatch = useDispatch();
 
   const imgPath = movieData.poster_path;
   const overView = movieData.overview.slice(0, 40);
@@ -30,6 +36,7 @@ export default function MovieCard({ movieData }) {
         onMouseEnter={() => {
           setIsHover(true);
         }}
+        onClick={() => dispatch(modalActions.update(movieData))}
       >
         <img
           className="absolute top-0 left-0 w-full h-full"
