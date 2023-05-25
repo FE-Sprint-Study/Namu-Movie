@@ -63,9 +63,9 @@ export default {
     return res.results;
   },
 
-  getGenreMovie(genre) {
+  getGenreMovie(genre, page = 1) {
     const res = fetch(
-      `${API_BASE}/discover/movie?api_key=${API_KEY}&with_genres=${genre}&language=ko`,
+      `${API_BASE}/discover/movie?api_key=${API_KEY}&with_genres=${genre}&language=ko&page=${page}`,
     );
     return res;
   },
