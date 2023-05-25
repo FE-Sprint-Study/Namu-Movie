@@ -3,8 +3,6 @@ import { React, useState, useEffect } from 'react';
 import { AiOutlineUpCircle } from 'react-icons/ai';
 
 export default function MoveTop() {
-  const [onClickBtn, setOnClickBtn] = useState(false);
-
   const [position, setPosition] = useState(0);
 
   function onScroll() {
@@ -18,14 +16,7 @@ export default function MoveTop() {
     };
   }, []);
 
-  useEffect(() => {
-    if (position === 0) {
-      setOnClickBtn(false);
-    }
-  }, [position]);
-
   const moveTopHandler = () => {
-    setOnClickBtn(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -33,9 +24,9 @@ export default function MoveTop() {
     <button
       type="button"
       disabled={position === 0}
-      className={`fixed bottom-10 right-10 text-6xl ${
-        onClickBtn ? 'text-mainColor' : 'text-white'
-      } ${position === 0 ? 'opacity-20' : ''}`}
+      className={`fixed bottom-10 right-10 text-6xl text-white ${
+        position === 0 ? 'opacity-20 cursor-not-allowed' : 'cursor-pointer'
+      }`}
       onClick={moveTopHandler}
     >
       <AiOutlineUpCircle />

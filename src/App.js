@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import tw from 'tailwind-styled-components';
 import Navbar from './components/Navbar';
-import MoveTop from './components/MoveTop';
+import MoveTop from './components/Buttons/MoveTop';
 
 const Main = lazy(() => import('./pages/Main'));
 const Search = lazy(() => import('./pages/Search'));
