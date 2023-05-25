@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from 'react';
 
-// import { AiFillCaretUp } from 'react-icons/ai';
 import { BsArrowUpCircle } from 'react-icons/bs';
 
 export default function MoveTop() {
