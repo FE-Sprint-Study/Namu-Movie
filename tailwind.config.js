@@ -10,9 +10,16 @@ module.exports = {
       width: {
         searchResultContainer: '77rem',
         searchBarWidth: '30rem',
+        modalContainerWidth: '80rem',
+        modalFirstInnerWidth: '70rem',
+        modalSecondInnerWidth: '70rem',
+        '85%': '85%',
       },
       height: {
         '50rem': '50rem',
+        modalContainerHeight: '45rem',
+        modalFirstInnerHeight: '15rem',
+        modalSecondInnerHeight: '20rem',
       },
       dropShadow: {
         '3xl': [
@@ -23,15 +30,8 @@ module.exports = {
       minWidth: {
         60: '15rem',
       },
-      animation: {
-        blink: 'blink 5s infinite',
-      },
-      keyframes: {
-        blink: {
-          '0%': { opacity: '1' },
-          '50%': { opacity: '0.1' },
-          '100%': { opacity: '1' },
-        },
+      fontSize: {
+        '0.6rem': '0.6rem',
       },
     },
   },
