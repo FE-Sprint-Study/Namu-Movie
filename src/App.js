@@ -8,7 +8,6 @@ import Navbar from './components/Navbar';
 import Modal from './components/Modal';
 import MoveTop from './components/Buttons/MoveTop';
 
-
 const Main = lazy(() => import('./pages/Main'));
 const Search = lazy(() => import('./pages/Search'));
 const Genre = lazy(() => import('./pages/Genre'));
