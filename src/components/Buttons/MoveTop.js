@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react';
 
-import { AiOutlineUpCircle } from 'react-icons/ai';
+// import { AiFillCaretUp } from 'react-icons/ai';
+import { BsArrowUpCircle } from 'react-icons/bs';
 
 export default function MoveTop() {
   const [position, setPosition] = useState(0);
@@ -29,7 +30,7 @@ export default function MoveTop() {
       }`}
       onClick={moveTopHandler}
     >
-      <AiOutlineUpCircle />
+      <BsArrowUpCircle />
     </button>
   );
 }
