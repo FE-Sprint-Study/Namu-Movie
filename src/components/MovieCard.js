@@ -10,6 +10,8 @@ import { useDispatch } from 'react-redux';
 import { modalActions } from '../store/modalSlice';
 import Skeleton from './Skeleton';
 
+import { MOVIECARD_MESSAGE, VARIOUS_NUMBERS } from '../constants/constants';
+
 export default function MovieCard({ movieData, isNew }) {
   const [isHover, setIsHover] = useState(false);
   const dispatch = useDispatch();
@@ -28,7 +30,7 @@ export default function MovieCard({ movieData, isNew }) {
 
   setTimeout(() => {
     setIsImgLoaded(true);
-  }, 1000);
+  }, VARIOUS_NUMBERS.TIMEOUT_LIMIT);
 
   return (
     <Card>
@@ -49,7 +51,7 @@ export default function MovieCard({ movieData, isNew }) {
             <img
               className="absolute top-0 left-0 w-full h-full"
               src={imgPath ? posterImg : notFoundImg}
-              alt="포스터"
+              alt={MOVIECARD_MESSAGE.ALT_POSTER}
             />
             <div
               className={`absolute w-full h-full bottom-0 top-0 left-0 right-0 text-center text-ellipsis overflow-hidden ${
@@ -57,7 +59,9 @@ export default function MovieCard({ movieData, isNew }) {
               } justify-center items-center bg-black/60`}
             >
               <div className="text-white p-4">
-                {overView !== '' ? `${overView}...` : '줄거리 정보없음'}
+                {overView !== ''
+                  ? `${overView}...`
+                  : MOVIECARD_MESSAGE.NO_OVERVIEW}
               </div>
             </div>
           </div>

@@ -37,6 +37,7 @@ export const VARIOUS_NUMBERS = Object.freeze({
   PAGE_AMOUNT: 20,
   TAGS_LIMIT: 5,
   STAR_NUMBER: 5,
+  TIMEOUT_LIMIT: 1000,
 });
 
 export const MODAL = Object.freeze({
@@ -44,4 +45,9 @@ export const MODAL = Object.freeze({
   VIDEO_HEIGHT: 300,
   NOT_OVERVIEW: '줄거리가 제공되지 않습니다.',
   NOT_CASTS: '출연진이 제공되지 않습니다.',
+});
+
+export const MOVIECARD_MESSAGE = Object.freeze({
+  NO_OVERVIEW: '줄거리 정보없음.',
+  ALT_POSTER: '포스터',
 });
