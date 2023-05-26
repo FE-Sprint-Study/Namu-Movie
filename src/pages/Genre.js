@@ -64,8 +64,15 @@ export default function Genre() {
       </SelectedTag>
       <CardContainer>
         {movieData && movieData.length !== 0 ? (
-          movieData.map(data => {
-            return <MovieCard movieData={data} key={movieData.id} />;
+          // movieData.map(data => {
+          //   return <MovieCard movieData={data} key={movieData.id} />;
+          // })
+          movieData.map((data, idx) => {
+            if (page * 20 - 20 <= idx)
+              return <MovieCard movieData={data} key={movieData.id} isNew />;
+            return (
+              <MovieCard movieData={data} key={movieData.id} isNew={false} />
+            );
           })
         ) : (
           <Empty />

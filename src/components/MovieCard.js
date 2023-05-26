@@ -9,8 +9,9 @@ import '../styles/color.css';
 import { AiFillStar } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { modalActions } from '../store/modalSlice';
+import Skeleton from './Skeleton';
 
-export default function MovieCard({ movieData }) {
+export default function MovieCard({ movieData, isNew }) {
   const [isHover, setIsHover] = useState(false);
   const dispatch = useDispatch();
 
@@ -24,6 +25,7 @@ export default function MovieCard({ movieData }) {
   const notFoundImg =
     'https://skydomepictures.com/wp-content/uploads/2018/08/movie-poster-coming-soon-2.png';
 
+  const [isImgLoaded, setIsImgLoaded] = useState(false);
   return (
     <Card>
       <div
@@ -39,13 +41,21 @@ export default function MovieCard({ movieData }) {
         onClick={() => dispatch(modalActions.update(movieData))}
       >
         <img
-          className="absolute top-0 left-0 w-full h-full"
+          className={`absolute top-0 left-0 w-full h-full ${
+            !isNew || isImgLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
           src={imgPath ? posterImg : notFoundImg}
           alt="포스터"
+          onLoad={() =>
+            setTimeout(() => {
+              setIsImgLoaded(true);
+            }, 2000)
+          }
         />
+        {!isImgLoaded && <Skeleton />}
         <div
           className={`absolute w-full h-full bottom-0 top-0 left-0 right-0 text-center text-ellipsis overflow-hidden ${
-            isHover ? 'flex' : 'hidden'
+            isImgLoaded && isHover ? 'flex' : 'hidden'
           } justify-center items-center bg-black/60`}
         >
           <div className="text-white p-4">
@@ -58,11 +68,29 @@ export default function MovieCard({ movieData }) {
           isHover ? `border-mainColor` : ''
         }`}
       >
-        <div className="text-white">{movieTitle}</div>
+        <div className={`text-white `}>
+          {!isNew || isImgLoaded ? (
+            movieTitle
+          ) : (
+            <Skeleton height="20px" width="100px" />
+          )}
+        </div>
         <div className="text-xs flex flex-row justify-between">
-          <div className="text-white">{date}</div>
+          <div className="text-white">
+            {!isNew || isImgLoaded ? (
+              date
+            ) : (
+              <Skeleton height="16px" width="65px" />
+            )}
+          </div>
           <div className="text-red-600 flex">
-            <AiFillStar className="text-base" /> {vote}
+            {!isNew || isImgLoaded ? (
+              <>
+                <AiFillStar className="text-base" /> {vote}
+              </>
+            ) : (
+              <Skeleton height="16px" width="35px" />
+            )}
           </div>
         </div>
       </div>
