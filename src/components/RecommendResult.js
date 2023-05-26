@@ -2,11 +2,12 @@ import React from 'react';
 
 import tw from 'tailwind-styled-components';
 import MovieCard from './MovieCard';
+import { SEARCH_MESSAGE } from '../constants/constants';
 
 export default function RecommendResult({ similarMovies }) {
   return (
     <ResultContainer>
-      {similarMovies.length && <Label>이런 영화는 어떠신가요?</Label>}
+      {similarMovies.length && <Label>{SEARCH_MESSAGE.RECOMMEND}</Label>}
       <MovieContainer>
         {similarMovies.map(movie => {
           return <MovieCard key={movie.id} movieData={movie} />;

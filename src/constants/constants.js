@@ -30,4 +30,18 @@ export const EMPTY_MESSAGE = Object.freeze({
 
 export const SEARCH_MESSAGE = Object.freeze({
   RESULT: '로 검색한 결과입니다.',
+  RECOMMEND: '이런 영화는 어떠신가요?',
+});
+
+export const VARIOUS_NUMBERS = Object.freeze({
+  PAGE_AMOUNT: 20,
+  TAGS_LIMIT: 5,
+  STAR_NUMBER: 5,
+});
+
+export const MODAL = Object.freeze({
+  VIDEO_WIDTH: 600,
+  VIDEO_HEIGHT: 300,
+  NOT_OVERVIEW: '줄거리가 제공되지 않습니다.',
+  NOT_CASTS: '출연진이 제공되지 않습니다.',
 });
