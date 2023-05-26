@@ -26,74 +26,59 @@ export default function MovieCard({ movieData, isNew }) {
     'https://skydomepictures.com/wp-content/uploads/2018/08/movie-poster-coming-soon-2.png';
 
   const [isImgLoaded, setIsImgLoaded] = useState(false);
+
+  setTimeout(() => {
+    setIsImgLoaded(true);
+  }, 1000);
+
   return (
     <Card>
-      <div
-        className={`h-5/6 relative cursor-pointer ease-in duration-300 ${
-          isHover ? 'scale-105 ' : 'scale-100'
-        } `}
-        onMouseLeave={() => {
-          setIsHover(false);
-        }}
-        onMouseEnter={() => {
-          setIsHover(true);
-        }}
-        onClick={() => dispatch(modalActions.update(movieData))}
-      >
-        <img
-          className={`absolute top-0 left-0 w-full h-full ${
-            !isNew || isImgLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          src={imgPath ? posterImg : notFoundImg}
-          alt="포스터"
-          onLoad={() =>
-            setTimeout(() => {
-              setIsImgLoaded(true);
-            }, 2000)
-          }
-        />
-        {!isImgLoaded && <Skeleton />}
-        <div
-          className={`absolute w-full h-full bottom-0 top-0 left-0 right-0 text-center text-ellipsis overflow-hidden ${
-            isImgLoaded && isHover ? 'flex' : 'hidden'
-          } justify-center items-center bg-black/60`}
-        >
-          <div className="text-white p-4">
-            {overView !== '' ? `${overView}...` : '줄거리 정보없음'}
+      {!isNew || isImgLoaded ? (
+        <>
+          <div
+            className={`h-5/6 relative cursor-pointer ease-in duration-300 ${
+              isHover ? 'scale-105 ' : 'scale-100'
+            } `}
+            onMouseLeave={() => {
+              setIsHover(false);
+            }}
+            onMouseEnter={() => {
+              setIsHover(true);
+            }}
+            onClick={() => dispatch(modalActions.update(movieData))}
+          >
+            <img
+              className="absolute top-0 left-0 w-full h-full"
+              src={imgPath ? posterImg : notFoundImg}
+              alt="포스터"
+            />
+            <div
+              className={`absolute w-full h-full bottom-0 top-0 left-0 right-0 text-center text-ellipsis overflow-hidden ${
+                isHover ? 'flex' : 'hidden'
+              } justify-center items-center bg-black/60`}
+            >
+              <div className="text-white p-4">
+                {overView !== '' ? `${overView}...` : '줄거리 정보없음'}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div
-        className={`flex flex-col justify-between h-1/6 py-1 px-2 text-sm border-b-2 cursor-default ${
-          isHover ? `border-mainColor` : ''
-        }`}
-      >
-        <div className={`text-white `}>
-          {!isNew || isImgLoaded ? (
-            movieTitle
-          ) : (
-            <Skeleton height="20px" width="100px" />
-          )}
-        </div>
-        <div className="text-xs flex flex-row justify-between">
-          <div className="text-white">
-            {!isNew || isImgLoaded ? (
-              date
-            ) : (
-              <Skeleton height="16px" width="65px" />
-            )}
-          </div>
-          <div className="text-red-600 flex">
-            {!isNew || isImgLoaded ? (
-              <>
+          <div
+            className={`flex flex-col justify-between h-1/6 py-1 px-2 text-sm border-b-2 cursor-default ${
+              isHover ? `border-mainColor` : ''
+            }`}
+          >
+            <div className="text-white">{movieTitle}</div>
+            <div className="text-xs flex flex-row justify-between">
+              <div className="text-white">{date}</div>
+              <div className="text-red-600 flex">
                 <AiFillStar className="text-base" /> {vote}
-              </>
-            ) : (
-              <Skeleton height="16px" width="35px" />
-            )}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <Skeleton />
+      )}
     </Card>
   );
 }
