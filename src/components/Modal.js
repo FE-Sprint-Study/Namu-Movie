@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-/* eslint-disable import/no-extraneous-dependencies */
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import tw from 'tailwind-styled-components';
@@ -9,6 +8,7 @@ import StarRatings from 'react-star-ratings';
 import { modalActions } from '../store/modalSlice';
 import movieApi from '../apis/movieApi';
 import TMDBTagList from '../constants/TMDBTagList';
+import { MODAL, VARIOUS_NUMBERS } from '../constants/constants';
 
 export default function Modal() {
   const movieData = useSelector(state => state.modal.item);
@@ -25,10 +25,10 @@ export default function Modal() {
   const genreIds = movieData.genre_ids;
   const tags = TMDBTagList.TMDBTagList.filter(tag =>
     genreIds.includes(tag.id),
-  ).slice(0, 5);
+  ).slice(0, VARIOUS_NUMBERS.TAGS_LIMIT);
 
-  const [runtime, setRuntime] = useState(); // 상영시간
-  const [casts, setCasts] = useState(); // 출연 배우
+  const [runtime, setRuntime] = useState();
+  const [casts, setCasts] = useState();
   const [videoKey, setVideoKey] = useState();
 
   const fetchData = useCallback(async () => {
@@ -60,7 +60,7 @@ export default function Modal() {
             <StarRatings
               rating={rating}
               starRatedColor="yellow"
-              numberOfStars={5}
+              numberOfStars={VARIOUS_NUMBERS.STAR_NUMBER}
               starDimension="25px"
               starSpacing="1px"
               name="rating"
@@ -71,7 +71,7 @@ export default function Modal() {
           <div className="flex flex-wrap w-2/3 justify-start mt-1">
             {casts
               ? casts.map(cast => <span className="mr-4">{cast}</span>)
-              : '출연 배우가 제공되지 않습니다.'}
+              : MODAL.NOT_CASTS}
           </div>
         </FirstSection>
 
@@ -81,7 +81,7 @@ export default function Modal() {
           <SecondSectionInnerLeft>
             <img className="w-48" src={posterUrl} alt="메인 포스터" />
             <div className="flex flex-col items-center h-full justify-between py-2 mx-4">
-              <Overview>{overview || '줄거리가 제공되지 않습니다.'}</Overview>
+              <Overview>{overview || MODAL.NOT_OVERVIEW}</Overview>
               <TagContainer>
                 {tags.map(tag => (
                   <Tag>{tag.name}</Tag>
@@ -93,8 +93,8 @@ export default function Modal() {
             <iframe
               title="movie"
               src={`https://www.youtube.com/embed/${videoKey}`}
-              width={600}
-              height={300}
+              width={MODAL.VIDEO_WIDTH}
+              height={MODAL.VIDEO_HEIGHT}
             />
           </SecondSectionInnerRight>
         </SecondSection>
@@ -127,7 +127,7 @@ const Overview = tw.section`
 
 const Divider = tw.hr`
   w-85%
-  border
+  border-t
   border-solid
   border-slate-300
   z-20

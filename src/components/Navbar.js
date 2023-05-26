@@ -25,19 +25,29 @@ import {
 import '../styles/color.css';
 import '../styles/font.css';
 
+import { PATH, NAVBAR_TITLE } from '../constants/constants';
+
 export default function Navbar() {
   const profileList = [
-    { icon: AiOutlineHome, text: 'Home', path: '/' },
-    { icon: AiOutlineSearch, text: 'Search', path: '/search' },
-    { icon: AiOutlineAppstore, text: 'Category', path: '/genre' },
+    { icon: AiOutlineHome, text: NAVBAR_TITLE.HOME, path: PATH.MAIN_PAGE },
+    {
+      icon: AiOutlineSearch,
+      text: NAVBAR_TITLE.SEARCH,
+      path: PATH.SEARCH_PAGE,
+    },
+    {
+      icon: AiOutlineAppstore,
+      text: NAVBAR_TITLE.CATEGORY,
+      path: PATH.GENRE_PAGE,
+    },
   ];
 
   const sampleLocation = useLocation();
-  let curPage = 'Home';
-  if (sampleLocation.pathname === '/search') {
-    curPage = 'Search';
-  } else if (sampleLocation.pathname === '/genre') {
-    curPage = 'Category';
+  let curPage = NAVBAR_TITLE.HOME;
+  if (sampleLocation.pathname === PATH.SEARCH_PAGE) {
+    curPage = NAVBAR_TITLE.SEARCH;
+  } else if (sampleLocation.pathname === PATH.GENRE_PAGE) {
+    curPage = NAVBAR_TITLE.CATEGORY;
   }
 
   return (

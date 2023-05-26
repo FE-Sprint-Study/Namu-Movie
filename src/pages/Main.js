@@ -4,6 +4,10 @@ import tw from 'tailwind-styled-components';
 import Swiper from '../components/Swiper';
 import MovieCard from '../components/MovieCard';
 import movieApi from '../apis/movieApi';
+import MoveLeft from '../components/Buttons/MoveLeft';
+import MoveRight from '../components/Buttons/MoveRight';
+
+import { SECTION_TITLE } from '../constants/constants';
 
 export default function Main() {
   const [popularData, setPopularData] = useState(null);
@@ -11,10 +15,12 @@ export default function Main() {
   const [dayPopularData, setDayPopularData] = useState(null);
   const [weekPopularData, setWeekPopularData] = useState(null);
   const [nowPlayingData, setNowPlayingData] = useState(null);
-  const [isDrag, setIsDrag] = useState(false);
-  const [startX, setStartX] = useState();
 
-  const scrollRef = useRef(null);
+  const popularScrollRef = useRef(null);
+  const dayPopularScrollRef = useRef(null);
+  const weekPopularScrollRef = useRef(null);
+  const topRatedScrollRef = useRef(null);
+  const nowPlayingScrollRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,99 +48,142 @@ export default function Main() {
     fetchData();
   }, []);
 
-  const throttle = (func, ms) => {
-    let throttled = false;
-    return (...args) => {
-      if (!throttled) {
-        throttled = true;
-        setTimeout(() => {
-          func(...args);
-          throttled = false;
-        }, ms);
-      }
-    };
-  };
-
-  const delay = 10;
-
-  const onDragStart = e => {
-    e.preventDefault();
-    setIsDrag(true);
-    setStartX(e.pageX + scrollRef.current.scrollLeft);
-  };
-
-  const onDragEnd = () => {
-    setIsDrag(false);
-  };
-
-  const onDragMove = e => {
-    if (isDrag) {
-      const { scrollWidth, clientWidth, scrollLeft } = scrollRef.current;
-
-      scrollRef.current.scrollLeft = startX - e.pageX;
-
-      if (scrollLeft === 0) {
-        setStartX(e.pageX);
-      } else if (scrollWidth <= clientWidth + scrollLeft) {
-        setStartX(e.pageX + scrollLeft);
-      }
+  const moveHandler = (type, scrollRef) => {
+    if (type === 'right') {
+      scrollRef.scrollTo({
+        left: scrollRef.scrollLeft + scrollRef.clientWidth,
+        behavior: 'smooth',
+      });
+    } else {
+      scrollRef.scrollTo({
+        left: scrollRef.scrollLeft - scrollRef.clientWidth,
+        behavior: 'smooth',
+      });
     }
   };
-
-  const onThrottleDragMove = throttle(onDragMove, delay);
 
   return (
     <MainContainer>
       <div>
         <div className="flex justify-center items-center">
-          {popularData && <Swiper movieData={popularData} />}
+          {topRatedData && <Swiper movieData={topRatedData} />}
         </div>
-        <div className="flex flex-col text-white m-8 ml-20 mr-20">
-          <SectionTitle>인기 TOP10 영화</SectionTitle>
-          <ScrollContainer
-            ref={scrollRef}
-            onMouseDown={onDragStart}
-            onMouseMove={onThrottleDragMove}
-            onMouseUp={onDragEnd}
-            onMouseLeave={onDragEnd}
-            onTouchStart={onDragStart}
-            onTouchMove={onThrottleDragMove}
-            onTouchEnd={onDragEnd}
-            onTouchCancel={onDragEnd}
-            tabIndex={0}
-          >
+        <div className="flex flex-col text-white m-8 ml-20 mr-32">
+          <SectionHeader>
+            <SectionTitle>{SECTION_TITLE.TOP10}</SectionTitle>
+            <SectionButtons>
+              {popularScrollRef && (
+                <div className="flex">
+                  <MoveLeft
+                    scrollRef={popularScrollRef.current}
+                    onClick={moveHandler}
+                  />
+                  <MoveRight
+                    scrollRef={popularScrollRef.current}
+                    onClick={moveHandler}
+                  />
+                </div>
+              )}
+            </SectionButtons>
+          </SectionHeader>
+
+          <ScrollContainer ref={popularScrollRef}>
             {popularData &&
               popularData.results
                 .slice(0, 10)
                 .map(data => <MovieCard movieData={data} key={data.id} />)}
           </ScrollContainer>
 
-          <SectionTitle>일간 인기 영화</SectionTitle>
-          <ScrollContainer>
+          <SectionHeader>
+            <SectionTitle>{SECTION_TITLE.DAY_POPULAR}</SectionTitle>
+            <SectionButtons>
+              {dayPopularScrollRef && (
+                <div className="flex">
+                  <MoveLeft
+                    scrollRef={dayPopularScrollRef.current}
+                    onClick={moveHandler}
+                  />
+                  <MoveRight
+                    scrollRef={dayPopularScrollRef.current}
+                    onClick={moveHandler}
+                  />
+                </div>
+              )}
+            </SectionButtons>
+          </SectionHeader>
+          <ScrollContainer ref={dayPopularScrollRef}>
             {dayPopularData &&
               dayPopularData.results.map(data => (
                 <MovieCard movieData={data} key={data.id} />
               ))}
           </ScrollContainer>
 
-          <SectionTitle>주간 인기 영화</SectionTitle>
-          <ScrollContainer>
+          <SectionHeader>
+            <SectionTitle>{SECTION_TITLE.WEEK_POPULAR}</SectionTitle>
+            <SectionButtons>
+              {weekPopularScrollRef && (
+                <div className="flex">
+                  <MoveLeft
+                    scrollRef={weekPopularScrollRef.current}
+                    onClick={moveHandler}
+                  />
+                  <MoveRight
+                    scrollRef={weekPopularScrollRef.current}
+                    onClick={moveHandler}
+                  />
+                </div>
+              )}
+            </SectionButtons>
+          </SectionHeader>
+          <ScrollContainer ref={weekPopularScrollRef}>
             {weekPopularData &&
               weekPopularData.results.map(data => (
                 <MovieCard movieData={data} key={data.id} />
               ))}
           </ScrollContainer>
 
-          <SectionTitle>역대 인기 영화</SectionTitle>
-          <ScrollContainer>
+          <SectionHeader>
+            <SectionTitle>{SECTION_TITLE.TOP_RATED}</SectionTitle>
+            <SectionButtons>
+              {topRatedScrollRef && (
+                <div className="flex">
+                  <MoveLeft
+                    scrollRef={topRatedScrollRef.current}
+                    onClick={moveHandler}
+                  />
+                  <MoveRight
+                    scrollRef={topRatedScrollRef.current}
+                    onClick={moveHandler}
+                  />
+                </div>
+              )}
+            </SectionButtons>
+          </SectionHeader>
+          <ScrollContainer ref={topRatedScrollRef}>
             {topRatedData &&
               topRatedData.results.map(data => (
                 <MovieCard movieData={data} key={data.id} />
               ))}
           </ScrollContainer>
 
-          <SectionTitle>현재 상영중인 영화</SectionTitle>
-          <ScrollContainer>
+          <SectionHeader>
+            <SectionTitle>{SECTION_TITLE.NOW_PLAYING}</SectionTitle>
+            <SectionButtons>
+              {nowPlayingScrollRef && (
+                <div className="flex">
+                  <MoveLeft
+                    scrollRef={nowPlayingScrollRef.current}
+                    onClick={moveHandler}
+                  />
+                  <MoveRight
+                    scrollRef={nowPlayingScrollRef.current}
+                    onClick={moveHandler}
+                  />
+                </div>
+              )}
+            </SectionButtons>
+          </SectionHeader>
+          <ScrollContainer ref={nowPlayingScrollRef}>
             {nowPlayingData &&
               nowPlayingData.results.map(data => (
                 <MovieCard movieData={data} key={data.id} />
@@ -163,10 +212,23 @@ const SectionTitle = tw.div`
   cursor-default
 `;
 
+const SectionHeader = tw.div`
+  flex
+  flex-row 
+  justify-between 
+  items-center
+`;
+
 const ScrollContainer = tw.div`
   flex
   flex-row
   w-full
   overflow-x-scroll
   scrollbar-hide
+`;
+
+const SectionButtons = tw.div`
+  flex
+  mr-10
+  mt-2
 `;

@@ -8,6 +8,8 @@ import MovieCard from '../components/MovieCard';
 import Tag from '../components/Tag';
 import Empty from '../components/Empty';
 
+import { GENRE_TITLE } from '../constants/constants';
+
 export default function Genre() {
   const SelectedTag = tw.div`
     text-3xl text-white
@@ -56,7 +58,7 @@ export default function Genre() {
       <Tag tagList={tagList} setTag={setTag} />
       <SelectedTag>
         {tagList.length === 0
-          ? '전체보기'
+          ? GENRE_TITLE.VIEW_ALL
           : tagList.map((item, idx) => {
               if (idx === 0) return item.name;
               return `, ${item.name}`;

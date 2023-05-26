@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { useInView } from 'react-intersection-observer';
 
 import tw from 'tailwind-styled-components';
@@ -7,6 +6,8 @@ import movieApi from '../apis/movieApi';
 import SearchBar from '../components/SearchBar';
 import SearchResult from '../components/SearchResult';
 import RecommendResult from '../components/RecommendResult';
+import Empty from '../components/Empty';
+import { VARIOUS_NUMBERS } from '../constants/constants';
 
 export default function Search() {
   const [searchWord, setSearchWord] = useState('');
@@ -14,9 +15,9 @@ export default function Search() {
   const [similarMovies, setSimilarMovies] = useState([]);
   const searchInputRef = useRef('');
 
-  const { ref, inView } = useInView({ threshold: 0.8 });
+  const { ref, inView } = useInView({ threshold: 0.9 });
 
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
 
   const showSimilarItem = useMemo(() => {
     return similarMovies;
@@ -26,30 +27,33 @@ export default function Search() {
     e.preventDefault();
     setSearchWord(searchInputRef.current.value);
     setSimilarMovies([]);
-    setPage(1);
+    setPage(0);
     searchInputRef.current.value = '';
     searchInputRef.current.focus();
   };
 
-  const fetchSearchMovieData = async word => {
+  const getSearchMovieData = async word => {
     const searchData = await movieApi.getSearch(word);
     setSearchMovies([...searchData]);
     return [...searchData][0].genre_ids;
   };
 
-  const fetchSimilarMovie = async (inputId, inputPage) => {
+  const addSimilarMovie = async (inputId, inputPage) => {
     const similarData = await movieApi.getSimilar(inputId, inputPage);
     setSimilarMovies(prevItem => [...prevItem, ...similarData]);
   };
 
   useEffect(() => {
-    fetchSearchMovieData(searchWord).then(resId => {
-      fetchSimilarMovie(resId, page);
-    });
+    searchWord &&
+      getSearchMovieData(searchWord).then(resId => {
+        addSimilarMovie(resId, page || 1);
+      });
   }, [searchWord, page]);
 
   useEffect(() => {
-    if (inView && searchWord) setPage(prev => prev + 1);
+    if (inView && searchWord) {
+      setPage(prev => prev + 1);
+    }
   }, [inView, searchWord]);
 
   return (
@@ -58,9 +62,20 @@ export default function Search() {
         handleSearchSubmit={handleSearchSubmit}
         searchInputRef={searchInputRef}
       />
-      <SearchResult searchWord={searchWord} searchMovies={searchMovies} />
-      <RecommendResult similarMovies={showSimilarItem.slice(0, page * 20)} />
-      <ObserverContainer ref={ref} />
+      {searchWord ? (
+        <>
+          <SearchResult searchWord={searchWord} searchMovies={searchMovies} />
+          <RecommendResult
+            similarMovies={showSimilarItem.slice(
+              0,
+              page * VARIOUS_NUMBERS.PAGE_AMOUNT,
+            )}
+          />
+          <ObserverContainer ref={ref} />
+        </>
+      ) : (
+        <Empty />
+      )}
     </Container>
   );
 }

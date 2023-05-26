@@ -2,10 +2,17 @@ import React from 'react';
 import tw from 'tailwind-styled-components';
 import MovieCard from './MovieCard';
 
+import { SEARCH_MESSAGE } from '../constants/constants';
+
 export default function SearchResult({ searchWord, searchMovies }) {
   return (
     <ResultContainer>
-      {searchMovies.length && <Label>{searchWord}로 검색한 결과입니다.</Label>}
+      {searchMovies.length && (
+        <Label>
+          {searchWord}
+          {SEARCH_MESSAGE.RESULT}
+        </Label>
+      )}
       <MovieContainer>
         {searchMovies.map(movie => {
           return <MovieCard key={movie.id} movieData={movie} />;
