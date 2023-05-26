@@ -63,7 +63,7 @@ export default function Genre() {
             })}
       </SelectedTag>
       <CardContainer>
-        {movieData && movieData.total_results !== 0 ? (
+        {movieData && movieData.length !== 0 ? (
           movieData.map(data => {
             return <MovieCard movieData={data} key={movieData.id} />;
           })

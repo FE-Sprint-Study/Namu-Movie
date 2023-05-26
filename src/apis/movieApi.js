@@ -46,6 +46,30 @@ export default {
     return latest;
   },
 
+  async getRuntime(movieId) {
+    const response = await fetch(
+      `${API_BASE}/movie/${movieId}?api_key=${API_KEY}&language=ko`,
+    );
+    const detail = await response.json();
+    return detail.runtime;
+  },
+
+  async getCast(movieId) {
+    const response = await fetch(
+      `${API_BASE}/movie/${movieId}/credits?api_key=${API_KEY}&language=ko`,
+    );
+    const cast = await response.json();
+    return cast.cast;
+  },
+
+  async getVideo(movieId) {
+    const response = await fetch(
+      `${API_BASE}/movie/${movieId}/videos?api_key=${API_KEY}&language=ko`,
+    );
+    const video = await response.json();
+    return video.results.slice(0, 1)[0].key;
+  },
+
   async getSearch(word) {
     const response = await fetch(
       `${API_BASE}/search/movie?api_key=${API_KEY}&query=${word}&include_adult=true&language=ko-KR`,

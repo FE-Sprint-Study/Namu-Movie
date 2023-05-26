@@ -10,9 +10,16 @@ module.exports = {
       width: {
         searchResultContainer: '77rem',
         searchBarWidth: '30rem',
+        modalContainerWidth: '80rem',
+        modalFirstInnerWidth: '70rem',
+        modalSecondInnerWidth: '70rem',
+        '85%': '85%',
       },
       height: {
         '50rem': '50rem',
+        modalContainerHeight: '45rem',
+        modalFirstInnerHeight: '15rem',
+        modalSecondInnerHeight: '20rem',
       },
       dropShadow: {
         '3xl': [
@@ -22,6 +29,9 @@ module.exports = {
       },
       minWidth: {
         60: '15rem',
+      },
+      fontSize: {
+        '0.6rem': '0.6rem',
       },
       animation: {
         blink: 'blink 5s infinite',
