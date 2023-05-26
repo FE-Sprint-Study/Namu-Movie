@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { useInView } from 'react-intersection-observer';
 
 import tw from 'tailwind-styled-components';
@@ -8,6 +7,7 @@ import SearchBar from '../components/SearchBar';
 import SearchResult from '../components/SearchResult';
 import RecommendResult from '../components/RecommendResult';
 import Empty from '../components/Empty';
+import { VARIOUS_NUMBERS } from '../constants/constants';
 
 export default function Search() {
   const [searchWord, setSearchWord] = useState('');
@@ -66,15 +66,16 @@ export default function Search() {
         <>
           <SearchResult searchWord={searchWord} searchMovies={searchMovies} />
           <RecommendResult
-            similarMovies={showSimilarItem.slice(0, page * 20)}
+            similarMovies={showSimilarItem.slice(
+              0,
+              page * VARIOUS_NUMBERS.PAGE_AMOUNT,
+            )}
           />
           <ObserverContainer ref={ref} />
         </>
       ) : (
         <Empty />
       )}
-
-      {console.log(page)}
     </Container>
   );
 }
