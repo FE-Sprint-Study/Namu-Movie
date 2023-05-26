@@ -29,13 +29,20 @@ import { PATH, NAVBAR_TITLE } from '../constants/constants';
 
 export default function Navbar() {
   const profileList = [
-    { icon: AiOutlineHome, text: NAVBAR_TITLE.HOME, path: PATH.MAIN_PAGE },
     {
+      id: 1,
+      icon: AiOutlineHome,
+      text: NAVBAR_TITLE.HOME,
+      path: PATH.MAIN_PAGE,
+    },
+    {
+      id: 2,
       icon: AiOutlineSearch,
       text: NAVBAR_TITLE.SEARCH,
       path: PATH.SEARCH_PAGE,
     },
     {
+      id: 3,
       icon: AiOutlineAppstore,
       text: NAVBAR_TITLE.CATEGORY,
       path: PATH.GENRE_PAGE,
@@ -62,7 +69,7 @@ export default function Navbar() {
         <Menu>
           {profileList.map(x => {
             return (
-              <Link to={x.path}>
+              <Link to={x.path} key={x.id}>
                 <MenuElement>
                   {x.text === curPage ? (
                     <>
