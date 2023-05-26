@@ -7,6 +7,8 @@ import movieApi from '../apis/movieApi';
 import MoveLeft from '../components/Buttons/MoveLeft';
 import MoveRight from '../components/Buttons/MoveRight';
 
+import { SECTION_TITLE } from '../constants/constants';
+
 export default function Main() {
   const [popularData, setPopularData] = useState(null);
   const [topRatedData, setTopRatedData] = useState(null);
@@ -68,7 +70,7 @@ export default function Main() {
         </div>
         <div className="flex flex-col text-white m-8 ml-20 mr-32">
           <SectionHeader>
-            <SectionTitle>TOP10 인기영화</SectionTitle>
+            <SectionTitle>{SECTION_TITLE.TOP10}</SectionTitle>
             <SectionButtons>
               {popularScrollRef && (
                 <div className="flex">
@@ -93,7 +95,7 @@ export default function Main() {
           </ScrollContainer>
 
           <SectionHeader>
-            <SectionTitle>일간 인기 영화</SectionTitle>
+            <SectionTitle>{SECTION_TITLE.DAY_POPULAR}</SectionTitle>
             <SectionButtons>
               {dayPopularScrollRef && (
                 <div className="flex">
@@ -117,7 +119,7 @@ export default function Main() {
           </ScrollContainer>
 
           <SectionHeader>
-            <SectionTitle>주간 인기 영화</SectionTitle>
+            <SectionTitle>{SECTION_TITLE.WEEK_POPULAR}</SectionTitle>
             <SectionButtons>
               {weekPopularScrollRef && (
                 <div className="flex">
@@ -141,7 +143,7 @@ export default function Main() {
           </ScrollContainer>
 
           <SectionHeader>
-            <SectionTitle>역대 인기 영화</SectionTitle>
+            <SectionTitle>{SECTION_TITLE.TOP_RATED}</SectionTitle>
             <SectionButtons>
               {topRatedScrollRef && (
                 <div className="flex">
@@ -165,7 +167,7 @@ export default function Main() {
           </ScrollContainer>
 
           <SectionHeader>
-            <SectionTitle>현재 상영중인 영화</SectionTitle>
+            <SectionTitle>{SECTION_TITLE.NOW_PLAYING}</SectionTitle>
             <SectionButtons>
               {nowPlayingScrollRef && (
                 <div className="flex">

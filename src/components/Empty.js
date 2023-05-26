@@ -2,6 +2,8 @@ import React from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import tw from 'tailwind-styled-components';
 
+import { EMPTY_MESSAGE } from '../constants/constants';
+
 export default function Empty() {
   const EmptyCardContainer = tw.div`
     text-white 
@@ -25,8 +27,9 @@ export default function Empty() {
       <EmptyCard>
         <AiOutlineSearch size="50" />
         <EmptyP>
-          movie not found <br />
-          search again
+          {EMPTY_MESSAGE.MOVIE_NOT_FOUND}
+          <br />
+          {EMPTY_MESSAGE.SEARCH_AGAIN}
         </EmptyP>
       </EmptyCard>
     </EmptyCardContainer>
