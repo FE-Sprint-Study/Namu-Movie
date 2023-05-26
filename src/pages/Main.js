@@ -69,7 +69,7 @@ export default function Main() {
         <div className="flex flex-col text-white m-8 ml-20 mr-32">
           <SectionHeader>
             <SectionTitle>TOP10 인기영화</SectionTitle>
-            <div className="flex mr-10 mt-2">
+            <SectionButtons>
               {popularScrollRef && (
                 <div className="flex">
                   <MoveLeft
@@ -82,7 +82,7 @@ export default function Main() {
                   />
                 </div>
               )}
-            </div>
+            </SectionButtons>
           </SectionHeader>
 
           <ScrollContainer ref={popularScrollRef}>
@@ -94,7 +94,7 @@ export default function Main() {
 
           <SectionHeader>
             <SectionTitle>일간 인기 영화</SectionTitle>
-            <div className="flex mr-10 mt-2">
+            <SectionButtons>
               {dayPopularScrollRef && (
                 <div className="flex">
                   <MoveLeft
@@ -107,7 +107,7 @@ export default function Main() {
                   />
                 </div>
               )}
-            </div>
+            </SectionButtons>
           </SectionHeader>
           <ScrollContainer ref={dayPopularScrollRef}>
             {dayPopularData &&
@@ -118,7 +118,7 @@ export default function Main() {
 
           <SectionHeader>
             <SectionTitle>주간 인기 영화</SectionTitle>
-            <div className="flex mr-10 mt-2">
+            <SectionButtons>
               {weekPopularScrollRef && (
                 <div className="flex">
                   <MoveLeft
@@ -131,7 +131,7 @@ export default function Main() {
                   />
                 </div>
               )}
-            </div>
+            </SectionButtons>
           </SectionHeader>
           <ScrollContainer ref={weekPopularScrollRef}>
             {weekPopularData &&
@@ -142,7 +142,7 @@ export default function Main() {
 
           <SectionHeader>
             <SectionTitle>역대 인기 영화</SectionTitle>
-            <div className="flex mr-10 mt-2">
+            <SectionButtons>
               {topRatedScrollRef && (
                 <div className="flex">
                   <MoveLeft
@@ -155,7 +155,7 @@ export default function Main() {
                   />
                 </div>
               )}
-            </div>
+            </SectionButtons>
           </SectionHeader>
           <ScrollContainer ref={topRatedScrollRef}>
             {topRatedData &&
@@ -166,7 +166,7 @@ export default function Main() {
 
           <SectionHeader>
             <SectionTitle>현재 상영중인 영화</SectionTitle>
-            <div className="flex mr-10 mt-2">
+            <SectionButtons>
               {nowPlayingScrollRef && (
                 <div className="flex">
                   <MoveLeft
@@ -179,7 +179,7 @@ export default function Main() {
                   />
                 </div>
               )}
-            </div>
+            </SectionButtons>
           </SectionHeader>
           <ScrollContainer ref={nowPlayingScrollRef}>
             {nowPlayingData &&
@@ -223,4 +223,10 @@ const ScrollContainer = tw.div`
   w-full
   overflow-x-scroll
   scrollbar-hide
+`;
+
+const SectionButtons = tw.div`
+  flex
+  mr-10
+  mt-2
 `;
