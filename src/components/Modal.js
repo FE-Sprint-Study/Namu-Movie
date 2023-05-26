@@ -127,7 +127,7 @@ const Overview = tw.section`
 
 const Divider = tw.hr`
   w-85%
-  border
+  border-t
   border-solid
   border-slate-300
   z-20
