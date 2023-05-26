@@ -35,12 +35,18 @@ module.exports = {
       },
       animation: {
         blink: 'blink 5s infinite',
+        skeleton: 'skeleton 2s infinite ease-in-out',
       },
       keyframes: {
         blink: {
           '0%': { opacity: '1' },
           '50%': { opacity: '0.1' },
           '100%': { opacity: '1' },
+        },
+        skeleton: {
+          '0%': { backgroundColor: 'rgba(165, 165, 165, 0.1)' },
+          '50%': { backgroundColor: 'rgba(165, 165, 165, 0.3)' },
+          '100%': { backgroundColor: 'rgba(165, 165, 165, 0.1)' },
         },
       },
     },
