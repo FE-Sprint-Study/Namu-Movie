@@ -1,10 +1,8 @@
-import { React, useEffect, useState } from 'react';
+import { React } from 'react';
 
 import { AiOutlineLeftCircle } from 'react-icons/ai';
 
 export default function MoveLeft({ scrollRef, onClick }) {
-  const [active, setActive] = useState(false);
-
   return (
     <div>
       {scrollRef && (
