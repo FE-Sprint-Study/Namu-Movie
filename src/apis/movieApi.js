@@ -4,43 +4,43 @@ const API_BASE = 'https://api.themoviedb.org/3';
 const API_KEY = 'b15312a073368028871202b6543ee610';
 
 export default {
-  getPopular() {
-    const popular = fetch(
+  async getPopular() {
+    const popular = await fetch(
       `${API_BASE}/movie/popular?api_key=${API_KEY}&language=ko`,
     );
     return popular;
   },
 
-  getTopRated() {
-    const topRated = fetch(
+  async getTopRated() {
+    const topRated = await fetch(
       `${API_BASE}/movie/top_rated?api_key=${API_KEY}&language=ko`,
     );
     return topRated;
   },
 
-  getDayPopular() {
-    const dayPopular = fetch(
+  async getDayPopular() {
+    const dayPopular = await fetch(
       `${API_BASE}/trending/movie/day?api_key=${API_KEY}&language=ko`,
     );
     return dayPopular;
   },
 
-  getWeekPopular() {
-    const weekPopular = fetch(
+  async getWeekPopular() {
+    const weekPopular = await fetch(
       `${API_BASE}/trending/movie/week?api_key=${API_KEY}&language=ko`,
     );
     return weekPopular;
   },
 
-  getNowPlaying() {
-    const nowPlaying = fetch(
+  async getNowPlaying() {
+    const nowPlaying = await fetch(
       `${API_BASE}/movie/now_playing?api_key=${API_KEY}&language=ko`,
     );
     return nowPlaying;
   },
 
-  getLatest() {
-    const latest = fetch(
+  async getLatest() {
+    const latest = await fetch(
       `${API_BASE}/movie/latest?api_key=${API_KEY}&language=ko`,
     );
     return latest;
