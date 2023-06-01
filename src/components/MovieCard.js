@@ -53,23 +53,15 @@ export default function MovieCard({ movieData, isNew }) {
               src={imgPath ? posterImg : notFoundImg}
               alt={MOVIECARD_MESSAGE.ALT_POSTER}
             />
-            <div
-              className={`absolute w-full h-full bottom-0 top-0 left-0 right-0 text-center text-ellipsis overflow-hidden ${
-                isHover ? 'flex' : 'hidden'
-              } justify-center items-center bg-black/60`}
-            >
+            <HoverCard className={` ${isHover ? 'flex' : 'hidden'} `}>
               <div className="text-white p-4">
                 {overView !== ''
                   ? `${overView}...`
                   : MOVIECARD_MESSAGE.NO_OVERVIEW}
               </div>
-            </div>
+            </HoverCard>
           </div>
-          <div
-            className={`flex flex-col justify-between h-1/6 py-1 px-2 text-sm border-b-2 cursor-default ${
-              isHover ? `border-mainColor` : ''
-            }`}
-          >
+          <InfoContainer className={` ${isHover ? `border-mainColor` : ''}`}>
             <div className="text-white">{movieTitle}</div>
             <div className="text-xs flex flex-row justify-between">
               <div className="text-white">{date}</div>
@@ -77,7 +69,7 @@ export default function MovieCard({ movieData, isNew }) {
                 <AiFillStar className="text-base" /> {vote}
               </div>
             </div>
-          </div>
+          </InfoContainer>
         </>
       ) : (
         <Skeleton />
@@ -96,4 +88,25 @@ overflow-hidden
 bg-black
 m-8
 font-bold
+`;
+
+const HoverCard = tw.div`
+absolute  
+w-full 
+h-full 
+bottom-0 top-0 left-0 right-0 
+text-center text-ellipsis 
+overflow-hidden
+justify-center items-center 
+bg-black/60
+`;
+
+const InfoContainer = tw.div`
+flex flex-col 
+justify-between 
+h-1/6 
+py-1 px-2 
+text-sm 
+border-b-2 
+cursor-default
 `;

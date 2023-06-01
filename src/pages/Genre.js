@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import tw from 'tailwind-styled-components';
 import { useInView } from 'react-intersection-observer';
+import tw from 'tailwind-styled-components';
 import movieApi from '../apis/movieApi';
-import '../styles/color.css';
-import '../styles/font.css';
 import MovieCard from '../components/MovieCard';
 import Tag from '../components/Tag';
 import Empty from '../components/Empty';
-
-import { GENRE_TITLE } from '../constants/constants';
+import { VARIOUS_NUMBERS, GENRE_TITLE } from '../constants/constants';
+import '../styles/color.css';
+import '../styles/font.css';
 
 export default function Genre() {
   const SelectedTag = tw.div`
@@ -67,7 +66,11 @@ export default function Genre() {
       <CardContainer>
         {movieData && movieData.length !== 0 ? (
           movieData.map((data, idx) => {
-            if (page * 20 - 20 <= idx)
+            if (
+              page * VARIOUS_NUMBERS.PAGE_AMOUNT -
+                VARIOUS_NUMBERS.PAGE_AMOUNT <=
+              idx
+            )
               return <MovieCard movieData={data} key={movieData.id} isNew />;
             return <MovieCard movieData={data} key={movieData.id} />;
           })
