@@ -61,12 +61,16 @@ npm start
 ## 기능 목록
 
 ### 무한스크롤
-<이미지 or 영상>
+
+https://github.com/FE-Sprint-Study/Namu-Movie/assets/77836614/1af4948f-922d-45d6-9435-21aab3e12f5c
+
 - 00개씩 가져오기/스크롤이 끝에 다다를 경우 00개를 더 가져와서 화면에 보여줍니다.
 - 더 이상 불러올 데이터가 없을때 데이터가 없음을 보여줍니다.
 
 ### 캐러셀(메인 페이지)
-<이미지 or 영상>
+
+https://github.com/FE-Sprint-Study/Namu-Movie/assets/77836614/6394fe68-891d-41d0-8dba-b8980b5433b9
+
 - 캐러셀 설명
 
 ### 마우스 드래그 (메인 페이지)
@@ -77,12 +81,17 @@ npm start
 - 민재: 스크롤 버튼, 지수 : 마우스 드래그
 
 ### 영화 검색
-<이미지 or 영상>
+
+https://github.com/FE-Sprint-Study/Namu-Movie/assets/77836614/73c48915-3054-463b-94d2-6503d0dcfee9
+
 - 검색한 키워드가 포함된 영화
 - 비슷한 영화 추천
 
 ### 카테고리 검색
-<이미지 or 영상>
+
+https://github.com/FE-Sprint-Study/Namu-Movie/assets/77836614/5caca50c-0a41-4df4-bdd4-1bf04244def5
+
+
 - 카테고리(장르)별 영화 추천
 
 ## 회고
