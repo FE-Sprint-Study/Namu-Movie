@@ -62,14 +62,14 @@ npm start
 
 ### 무한스크롤(검색 페이지, 카테고리 페이지)
 
-https://github.com/FE-Sprint-Study/Namu-Movie/assets/77836614/1af4948f-922d-45d6-9435-21aab3e12f5c
+![검색페이지](https://github.com/FE-Sprint-Study/Namu-Movie/assets/77836614/c0c67a90-7189-498d-96c8-db892d4aad16)
 
 - 00개씩 가져오기/스크롤이 끝에 다다를 경우 00개를 더 가져와서 화면에 보여줍니다.
 - 더 이상 불러올 데이터가 없을때 데이터가 없음을 보여줍니다.
 
 ### 캐러셀(메인 페이지)
 
-https://github.com/FE-Sprint-Study/Namu-Movie/assets/77836614/6394fe68-891d-41d0-8dba-b8980b5433b9
+![캐러셀](https://github.com/FE-Sprint-Study/Namu-Movie/assets/77836614/5fe0bcf0-2cce-40b8-8aba-959138a1e392)
 
 - 캐러셀 설명
 
@@ -93,7 +93,7 @@ https://github.com/FE-Sprint-Study/Namu-Movie/assets/77836614/6394fe68-891d-41d0
 
 ### 영화 검색(검색 페이지)
 
-https://github.com/FE-Sprint-Study/Namu-Movie/assets/77836614/73c48915-3054-463b-94d2-6503d0dcfee9
+![검색페이지](https://github.com/FE-Sprint-Study/Namu-Movie/assets/77836614/5b718767-9a2c-4119-a2d7-3e0ada498dd0)
 
 - 검색한 키워드가 포함된 영화
 - 비슷한 영화 추천
