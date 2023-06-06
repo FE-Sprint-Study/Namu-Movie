@@ -1,70 +1,91 @@
-# Getting Started with Create React App test
+<div align="center" >
+  
+# Namu-Movie
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 개요
+TMDB API 기반 영화 추천/검색 웹 서비스로 사용자에게 쉽고 빠르게 원하는 영화에 대한 상세정보를 제공함으로써 편의성을 극대화 시킬 수 있다.
+- 인기 영화/검색/장르별 영화 검색 기능 등의 다양한 검색 방법을 제공해 사용자에게 편의성 제공
 
-## Available Scripts
+### 서비스 링크 : 
 
-In the project directory, you can run:
+### 기술 스택
+<table>
+  <tr>
+    <td><strong>스택</strong></td>
+    <td>JS</td>
+    <td>REACT</td>
+    <td>tailwindCSS</td>
+    <td>styled-components</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/800px-JavaScript-logo.png" width="180" height="180"/></td>
+    <td><img src="https://blog.kakaocdn.net/dn/doBY5S/btrlEmJSNSs/qmgj8lzzHRkt2b0WX5nSN1/img.png" width="180" height="180"/></td>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/2048px-Tailwind_CSS_Logo.svg.png" width="180" height="180"/></td>
+    <td><img src="https://i.ibb.co/ydkG6cv/img.png" width="180" height="180"/></td>
+  </tr>
+  <tr>
+    <td><strong>라이브러리</strong></td>
+    <td>RTK</td>
+    <td>react-star-ratings</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img src="https://img.uxwing.com/wp-content/themes/uxwing/download/brands-social-media/redux-icon.svg" width="180" height="180"/></td>
+    <td><img src="https://raw.githubusercontent.com/ami1906/react-star-rating-lite/develop/public/filled.png" width="180"/></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 개발 환경 세팅
+```bash
+npm install
+npm start
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## 팀원
+- 공동 기획 후 1팀과 2팀으로 나뉘어 개발 진행
+- 1/2팀 깃허브 링크 : 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| 1팀 |  |  | 2팀 |  |  |
+| --- | --- | --- | --- | --- | --- |
+| [김민재](https://github.com/crowcrow07) | [김영웅](https://github.com/novice-hero) | [황찬우](https://github.com/HChanWoo) | [김준표](https://github.com/KimJunpyo) | [김태우](https://github.com/TaeWooKim-SCH/) | [류지수](https://github.com/R-jisu) | 
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 기능 목록
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 무한스크롤
+<이미지 or 영상>
+- 00개씩 가져오기/스크롤이 끝에 다다를 경우 00개를 더 가져와서 화면에 보여줍니다.
+- 더 이상 불러올 데이터가 없을때 데이터가 없음을 보여줍니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 캐러셀(메인 페이지)
+<이미지 or 영상>
+- 캐러셀 설명
 
-### `npm run eject`
+### 마우스 드래그 (메인 페이지)
+<이미지 or 영상>
+- 주제별 무비카드를 10개까지 보여줍니다.
+- 무비카드에 Hover 시 줄거리를 보여줍니다.
+- 무비카드 클릭 시 영화 상세 정보를 포함한 모달을 띄웁니다.
+- 민재: 스크롤 버튼, 지수 : 마우스 드래그
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 영화 검색
+<이미지 or 영상>
+- 검색한 키워드가 포함된 영화
+- 비슷한 영화 추천
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 카테고리 검색
+<이미지 or 영상>
+- 카테고리(장르)별 영화 추천
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 회고
+- 김민재 :
+- 김영웅 :
+- 황찬우 : 
