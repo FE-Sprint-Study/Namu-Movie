@@ -100,7 +100,7 @@ npm start
 
 ### 카테고리 검색 / 스켈레톤 UI(카테고리 페이지)
 
-https://github.com/FE-Sprint-Study/Namu-Movie/assets/77836614/5caca50c-0a41-4df4-bdd4-1bf04244def5
+![카테고리페이지](https://github.com/FE-Sprint-Study/Namu-Movie/assets/77836614/9cb9fc80-b08b-4981-9dbd-0b0d1c6ecfc8)
 
 - 카테고리 검색
   - 카테고리(장르)별 영화 추천
