@@ -51,7 +51,7 @@ npm start
 
 ## 팀원
 - 공동 기획 후 1팀과 2팀으로 나뉘어 개발 진행
-- 1/2팀 깃허브 링크 : 
+- 2팀 깃허브 링크 : https://github.com/FE-Sprint-Study/Movie-Wiki
 
 | 1팀 |  |  | 2팀 |  |  |
 | --- | --- | --- | --- | --- | --- |
@@ -73,12 +73,23 @@ https://github.com/FE-Sprint-Study/Namu-Movie/assets/77836614/6394fe68-891d-41d0
 
 - 캐러셀 설명
 
-### 마우스 드래그 (메인 페이지)
-<이미지 or 영상>
+### 좌우 스크롤 (메인 페이지)
+![좌우스크롤](https://github.com/FE-Sprint-Study/Namu-Movie/assets/88226519/2283771b-96fb-465e-bac2-c60b8b7e2235)
+
 - 주제별 무비카드를 10개까지 보여줍니다.
 - 무비카드에 Hover 시 줄거리를 보여줍니다.
 - 무비카드 클릭 시 영화 상세 정보를 포함한 모달을 띄웁니다.
-- 민재: 스크롤 버튼, 지수 : 마우스 드래그
+- 버튼 클릭을 이용해서 좌우 스크롤을 구현했습니다.
+
+### 무비 카드 (메인 페이지)
+- 무비 카드 호버시 상세 정보를 보여줍니다. </br>
+
+![상세정보](https://github.com/FE-Sprint-Study/Namu-Movie/assets/88226519/261151c9-a179-412c-9695-fb20562ca74a)
+
+- 무비 카드 클릭시 모달창을 띄워줍니다. </br>
+
+![모달창](https://github.com/FE-Sprint-Study/Namu-Movie/assets/88226519/c02bc873-b2fa-4134-b1d0-cf2446859797)
+
 
 ### 영화 검색(검색 페이지)
 
@@ -97,6 +108,6 @@ https://github.com/FE-Sprint-Study/Namu-Movie/assets/77836614/5caca50c-0a41-4df4
   - 이미지 로딩 중일 때 스켈레톤 UI 사용
 
 ## 회고
-- 김민재 :
-- 김영웅 :
-- 황찬우 : 
+- 김민재 : [까악이 블로그](https://crow07.tistory.com/entry/TMDB-API%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4%EC%84%9C-%EC%98%81%ED%99%94-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8-%ED%98%91%EC%97%85-%EC%97%B0%EC%8A%B5%ED%95%B4%EB%B3%B4%EA%B8%B0)
+- 김영웅 : [애송이 개발자 탈출기](https://highero.tistory.com/entry/%EC%98%81%ED%99%94-%EA%B2%80%EC%83%89-%EC%9B%B9-%ED%9A%8C%EA%B3%A0)
+- 황찬우 : [한잔 하시죠](url)
