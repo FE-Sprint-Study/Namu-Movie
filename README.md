@@ -34,7 +34,7 @@ TMDB API 기반 영화 추천/검색 웹 서비스로 사용자에게 쉽고 빠
   </tr>
   <tr>
     <td></td>
-    <td><img src="https://img.uxwing.com/wp-content/themes/uxwing/download/brands-social-media/redux-icon.svg" width="180" height="180"/></td>
+    <td><img src="https://repository-images.githubusercontent.com/347723622/92065800-865a-11eb-9626-dff3cb7fef55" width="180" height="180"/></td>
     <td><img src="https://raw.githubusercontent.com/ami1906/react-star-rating-lite/develop/public/filled.png" width="180"/></td>
     <td></td>
     <td></td>
@@ -70,8 +70,6 @@ npm start
 ### 캐러셀(메인 페이지)
 
 ![캐러셀](https://github.com/FE-Sprint-Study/Namu-Movie/assets/77836614/5fe0bcf0-2cce-40b8-8aba-959138a1e392)
-
-- 캐러셀 설명
 
 ### 좌우 스크롤 (메인 페이지)
 ![좌우스크롤](https://github.com/FE-Sprint-Study/Namu-Movie/assets/88226519/2283771b-96fb-465e-bac2-c60b8b7e2235)
